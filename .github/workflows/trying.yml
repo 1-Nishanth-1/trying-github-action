@@ -20,4 +20,4 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add report.txt
           git commit -m "Automated report"
-          git push main
+          git push origin main
