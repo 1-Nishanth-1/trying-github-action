@@ -1,13 +1,23 @@
 name: learning
 
 on:
+  schedule:
+    - cron: '46 14 * * *'  # Daily at 14:50 UTC
   push:
     branches:
-      - main 
+      - main
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: 23f2002133@ds.study.iitm.ac.in
-        run: echo "Hello, world!"
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: commit by 23f2002133@ds.study.iitm.ac.in
+        run: |
+          echo "Daily update: $(date -u)" >> daily-log.txt
+          git add daily-log.txt
+          git commit -m "Daily update $(date -u)" || echo "Nothing to commit"
+          git push
