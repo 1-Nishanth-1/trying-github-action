@@ -2,7 +2,7 @@ name: learning
 
 on:
   schedule:
-    - cron: '46 14 * * *'  # Daily at 14:50 UTC
+    - cron: '47 14 * * *'  # Daily at 14:50 UTC
   push:
     branches:
       - main
@@ -19,5 +19,7 @@ jobs:
         run: |
           echo "Daily update: $(date -u)" >> daily-log.txt
           git add daily-log.txt
+          git config --global user.name "1-Nishanth-1"
+          git config --global user.email "nishanthrn1@gmail.com"
           git commit -m "Daily update $(date -u)" || echo "Nothing to commit"
           git push
