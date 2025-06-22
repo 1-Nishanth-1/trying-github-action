@@ -8,18 +8,15 @@ on:
       - main
 
 jobs:
-  test:
+  report:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: commit by 23f2002133@ds.study.iitm.ac.in
+      - uses: actions/checkout@v4
+      - name: Create report file
+        run: date +%s > report.txt
+      - name: Commit report
         run: |
-          echo "Daily update: $(date -u)" >> daily-log.txt
-          git add daily-log.txt
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git commit -m "Daily update $(date -u)" || echo "Nothing to commit"
+          git config --global user.name '1-Nishanth-1'
+          git config --global user.email '1-Nishanth-1@users.noreply.github.com'
+          git commit -am "Automated report"
           git push
